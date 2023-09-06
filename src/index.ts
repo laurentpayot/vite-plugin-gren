@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-ignore
-import { toESModule } from 'elm-esm'
+import { toESModule } from './dependencies/gren-esm'
 //@ts-ignore
-import compiler from 'node-elm-compiler'
+import compiler from './dependencies/node-gren-compiler'
 import { normalize, relative, dirname } from 'path'
 import type { ModuleNode, Plugin } from 'vite'
 import findUp from 'find-up'
@@ -17,7 +17,7 @@ const viteProjectPath = (dependency: string) => `/${relative(process.cwd(), depe
 const parseImportId = (id: string) => {
   const parsedId = new URL(id, 'file://')
   const pathname = parsedId.pathname
-  const valid = pathname.endsWith('.elm') && !parsedId.searchParams.has('raw')
+  const valid = pathname.endsWith('.gren') && !parsedId.searchParams.has('raw')
   const withParams = parsedId.searchParams.getAll('with')
 
   return {
@@ -27,34 +27,34 @@ const parseImportId = (id: string) => {
   }
 }
 
-const findClosestElmJson = async (pathname: string) => {
-  const elmJson = await findUp('elm.json', { cwd: dirname(pathname) })
-  return elmJson ? dirname(elmJson) : undefined
+const findClosestGrenJson = async (pathname: string) => {
+  const grenJson = await findUp('gren.json', { cwd: dirname(pathname) })
+  return grenJson ? dirname(grenJson) : undefined
 }
 
-type NodeElmCompilerOptions = {
+type NodeGrenCompilerOptions = {
   cwd?: string
   docs?: string
   debug?: boolean
   optimize?: boolean
   processOpts?: Record<string, string>
   report?: string
-  pathToElm?: string
+  pathToGren?: string
   verbose?: boolean
 }
 
 export const plugin = (opts?: {
   debug?: boolean
   optimize?: boolean
-  nodeElmCompilerOptions: NodeElmCompilerOptions
+  nodeGrenCompilerOptions: NodeGrenCompilerOptions
 }): Plugin => {
   const compilableFiles: Map<string, Set<string>> = new Map()
   const debug = opts?.debug
   const optimize = opts?.optimize
-  const compilerOptionsOverwrite = opts?.nodeElmCompilerOptions ?? {}
+  const compilerOptionsOverwrite = opts?.nodeGrenCompilerOptions ?? {}
 
   return {
-    name: 'vite-plugin-elm',
+    name: 'vite-plugin-gren',
     enforce: 'pre',
     handleHotUpdate({ file, server, modules }) {
       const { valid } = parseImportId(file)
@@ -114,13 +114,13 @@ export const plugin = (opts?: {
           optimize: typeof optimize === 'boolean' ? optimize : !debug && isBuild,
           verbose: isBuild,
           debug: debug ?? !isBuild,
-          cwd: await findClosestElmJson(pathname),
+          cwd: await findClosestGrenJson(pathname),
           ...compilerOptionsOverwrite,
         })
 
         const esm = injectAssets(toESModule(compiled))
 
-        // Apparently `addWatchFile` may not exist: https://github.com/hmsk/vite-plugin-elm/pull/36
+        // Apparently `addWatchFile` may not exist: https://github.com/hmsk/vite-plugin-gren/pull/36
         if (this.addWatchFile) {
           dependencies.forEach(this.addWatchFile.bind(this))
         }
@@ -133,7 +133,7 @@ export const plugin = (opts?: {
         if (e instanceof Error && e.message.includes('-- NO MAIN')) {
           const message = `${viteProjectPath(
             pathname,
-          )}: NO MAIN .elm file is requested to transform by vite. Probably, this file is just a depending module`
+          )}: NO MAIN .gren file is requested to transform by vite. Probably, this file is just a depending module`
           throw message
         } else {
           throw e
