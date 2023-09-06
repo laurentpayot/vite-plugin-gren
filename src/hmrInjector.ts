@@ -9,7 +9,7 @@ if (import.meta.hot) {
   let grenVersion
   if (typeof gren$core$Maybe$Just !== 'undefined') {
     grenVersion = '0.19.0'
-  } else if (typeof $gren$core$Maybe$Just !== 'undefined') {
+  } else if (true || typeof $gren$core$Maybe$Just !== 'undefined') {
     grenVersion = '0.19.1'
   } else {
     throw new Error("Could not determine Gren version")
