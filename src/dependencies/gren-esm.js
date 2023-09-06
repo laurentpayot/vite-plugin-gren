@@ -1,7 +1,9 @@
 const toESModule = js => {
     const grenExports = js.match(
-        /^\s*_Platform_export\(([^]*)\);\n?}\(this\)\);/m
+        // /^\s*_Platform_export\(([^]*)\);\n?}\(this\)\);/m
+        /^\s*_Platform_export\((.*)\);\n?}/m
     )[1];
+    console.log("*** grenExports =", grenExports)
     return js
         .replace(/\(function\s*\(scope\)\s*\{$/m, "// -- $&")
         .replace(/['"]use strict['"];$/m, "// -- $&")
