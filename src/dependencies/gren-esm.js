@@ -1,7 +1,7 @@
 const toESModule = js => {
     const grenExports = js.match(
         /^\s*_Platform_export\(([^]*)\);\n?}\(this\)\);/m
-    )?.[1] ?? "{}";
+    )[1];
     return js
         .replace(/\(function\s*\(scope\)\s*\{$/m, "// -- $&")
         .replace(/['"]use strict['"];$/m, "// -- $&")
