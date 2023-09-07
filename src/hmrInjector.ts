@@ -6,24 +6,24 @@ ${compiledESM}
  * https://github.com/klazuka/elm-hot/blob/master/LICENSE.txt
 */
 if (import.meta.hot) {
-  // let grenVersion
-  // if (typeof gren$core$Maybe$Just !== 'undefined') {
-  //   grenVersion = '0.19.0'
-  // } else if (typeof $gren$core$Maybe$Just !== 'undefined') {
-  //   grenVersion = '0.19.1'
+  // let elmVersion
+  // if (typeof elm$core$Maybe$Just !== 'undefined') {
+  //   elmVersion = '0.19.0'
+  // } else if (typeof $elm$core$Maybe$Just !== 'undefined') {
+  //   elmVersion = '0.19.1'
   // } else {
-  //   throw new Error("Could not determine Gren version")
+  //   throw new Error("Could not determine Elm version")
   // }
 
-  // const grenSymbol = (symbol) => {
+  // const elmSymbol = (symbol) => {
   //   try {
-  //     switch (grenVersion) {
+  //     switch (elmVersion) {
   //       case '0.19.0':
   //         return eval(symbol);
   //       case '0.19.1':
   //         return eval('$' + symbol);
   //       default:
-  //         throw new Error('Cannot resolve ' + symbol + '. Gren version unknown!')
+  //         throw new Error('Cannot resolve ' + symbol + '. Elm version unknown!')
   //     }
   //   } catch (e) {
   //     if (e instanceof ReferenceError) {
