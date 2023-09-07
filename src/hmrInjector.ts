@@ -6,29 +6,42 @@ ${compiledESM}
  * https://github.com/klazuka/elm-hot/blob/master/LICENSE.txt
 */
 if (import.meta.hot) {
-  let grenVersion
-  if (typeof gren$core$Maybe$Just !== 'undefined') {
-    grenVersion = '0.19.0'
-  } else if (true || typeof $gren$core$Maybe$Just !== 'undefined') {
-    grenVersion = '0.19.1'
-  } else {
-    throw new Error("Could not determine Gren version")
-  }
+  // let grenVersion
+  // if (typeof gren$core$Maybe$Just !== 'undefined') {
+  //   grenVersion = '0.19.0'
+  // } else if (typeof $gren$core$Maybe$Just !== 'undefined') {
+  //   grenVersion = '0.19.1'
+  // } else {
+  //   throw new Error("Could not determine Gren version")
+  // }
+
+  // const grenSymbol = (symbol) => {
+  //   try {
+  //     switch (grenVersion) {
+  //       case '0.19.0':
+  //         return eval(symbol);
+  //       case '0.19.1':
+  //         return eval('$' + symbol);
+  //       default:
+  //         throw new Error('Cannot resolve ' + symbol + '. Gren version unknown!')
+  //     }
+  //   } catch (e) {
+  //     if (e instanceof ReferenceError) {
+  //       return undefined;
+  //     } else {
+  //       throw e;
+  //     }
+  //   }
+  // }
 
   const grenSymbol = (symbol) => {
     try {
-      switch (grenVersion) {
-        case '0.19.0':
-          return eval(symbol);
-        case '0.19.1':
-          return eval('$' + symbol);
-        default:
-          throw new Error('Cannot resolve ' + symbol + '. Gren version unknown!')
-      }
+      return eval('$' + symbol);
     } catch (e) {
       if (e instanceof ReferenceError) {
         return undefined;
       } else {
+        console.log(123)
         throw e;
       }
     }
