@@ -1,19 +1,16 @@
 # vite-plugin-gren
 
-Based on [hmsk/vite-plugin-elm](https://github.com/hmsk/vite-plugin-elm) and  [gabriela-sartori/vite-plugin-gren](https://github.com/gabriela-sartori/vite-plugin-gren) for the conversion technique.
-
-
-This plugin enables you to compile an Gren application/document/element on your [Vite](https://github.com/vitejs/vite) project. [Hot module replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) works roughly in development.
+This plugin is based on [hmsk/vite-plugin-elm](https://github.com/hmsk/vite-plugin-elm). It enables you to compile an [Gren](https://gren-lang.org/) application/document/element on your [Vite](https://github.com/vitejs/vite) project. [Hot module replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) works roughly in development.
 
 ## Setup
 
-Install the plugin directly from GitHub (works with npm, yarn and pnpm)
+*For now,* install the plugin directly from GitHub (works with npm, yarn and pnpm):
+
 ```
 npm i -D github:laurentpayot/vite-plugin-gren
 ```
 
-
-Update `vite.config.(js|ts)`
+Update `vite.config.(js|ts)`:
 
 ```ts
 import { defineConfig } from 'vite'
@@ -24,7 +21,8 @@ export default defineConfig({
 })
 ```
 
-Then you can start Gren in your main Vite script
+Then you can start Gren in your main Vite script:
+
 ```ts
 import { Gren } from './Main.gren'
 
@@ -43,6 +41,8 @@ See the original [Elm plugin README](https://github.com/hmsk/vite-plugin-elm#plu
 
 ## Acknowledgement
 
+- [hmsk/vite-plugin-elm](https://github.com/hmsk/vite-plugin-elm) for the original Elm plugin
+- [gabriela-sartori/vite-plugin-gren](https://github.com/gabriela-sartori/vite-plugin-gren) for the Gren conversion idea
 - [klazuka/elm-hot](https://github.com/klazuka/elm-hot) for a helpful referrence of the HMR implementation
 - [ChristophP/elm-esm](https://github.com/ChristophP/elm-esm/issues/2) for publishing IIFE -> ESM logic
 
