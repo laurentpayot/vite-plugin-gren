@@ -1,6 +1,6 @@
 # vite-plugin-gren
 
-This plugin is based on [hmsk/vite-plugin-elm](https://github.com/hmsk/vite-plugin-elm). It enables you to compile an [Gren](https://gren-lang.org/) application/document/element on your [Vite](https://github.com/vitejs/vite) project. [Hot module replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) works roughly in development.
+This plugin is based on [hmsk/vite-plugin-elm](https://github.com/hmsk/vite-plugin-elm). It enables you to compile a [Gren](https://gren-lang.org/) application/document/element on your [Vite](https://github.com/vitejs/vite) project. [Hot module replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) works roughly in development.
 
 ## Setup
 
