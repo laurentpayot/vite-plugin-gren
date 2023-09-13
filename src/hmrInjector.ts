@@ -41,7 +41,6 @@ if (import.meta.hot) {
       if (e instanceof ReferenceError) {
         return undefined;
       } else {
-        console.log(123)
         throw e;
       }
     }
